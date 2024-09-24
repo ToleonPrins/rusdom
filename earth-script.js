@@ -2838,7 +2838,7 @@ function checkAnswer() {
         notification.className = "alert alert-success";
         notification.innerText = `Молодец! Ты смог решить ${goal} ${getCorrectWordForm(
           goal
-        )}! 🎉`;
+        )}!`;
 
         localStorage.setItem("correctAnswers", 0);
         document.getElementById("correctAnswersDisplay").textContent = 0;
