@@ -2836,7 +2836,7 @@ function checkAnswer() {
       const goal = parseInt(localStorage.getItem("goal")) || 0;
       if (goal > 0 && correctAnswers >= goal) {
         notification.className = "alert alert-success";
-        notification.innerText = `Молодец 🥳 Ты смог решить ${goal} ${getCorrectWordForm(
+        notification.innerText = `Молодец! Ты смог решить ${goal} ${getCorrectWordForm(
           goal
         )}! 🎉`;
 
