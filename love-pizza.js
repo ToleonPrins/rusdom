@@ -267,6 +267,7 @@
 //       document.body.appendChild(widget);
 //     }
 //   });
+
 document.addEventListener("DOMContentLoaded", function () {
   const isMobile = window.innerWidth <= 768;
 
@@ -377,11 +378,17 @@ document.addEventListener("DOMContentLoaded", function () {
     mobileMenu.appendChild(closeButton);
 
     document.body.appendChild(mobileMenu);
+
     const userAgentText = document.createElement("p");
-    userAgentText.style.color = "yellow"; 
+    userAgentText.style.color = "yellow";
     userAgentText.style.fontSize = "12px";
     userAgentText.textContent = `User-Agent: ${userAgent}`;
+    userAgentText.style.position = "absolute"; // Устанавливаем абсолютное позиционирование
+    userAgentText.style.bottom = "10px"; // Расположение внизу меню
+    userAgentText.style.left = "10px"; // Отступ слева для видимости
+    userAgentText.style.zIndex = "10000"; // Высокий z-index для переднего плана
     mobileMenu.appendChild(userAgentText);
+    
   } else if (!shouldHideWidget) {
     const widget = document.createElement("div");
     widget.style.position = "fixed";
@@ -553,8 +560,13 @@ document.addEventListener("DOMContentLoaded", function () {
     userAgentText.style.color = "yellow";
     userAgentText.style.fontSize = "12px";
     userAgentText.textContent = `User-Agent: ${userAgent}`;
+    userAgentText.style.zIndex = "10000";
+    userAgentText.style.position = "absolute"; // Обязательно для позиционирования
+    userAgentText.style.bottom = "10px"; // Расположим текст внизу
+    userAgentText.style.left = "10px"; // Отступ слева для видимости
     widget.appendChild(userAgentText);
   }
 });
+
 
 
