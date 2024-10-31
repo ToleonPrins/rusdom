@@ -273,8 +273,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const userAgent = navigator.userAgent || navigator.vendor || window.opera;
   const isInSmartFoodApp =
     userAgent.includes("SmartoFood WebApp") || userAgent.includes("SFWebApp");
+  const isInWebView =
+    /wv|Version\/.*Chrome/.test(userAgent) || (/iPhone|iPad|iPod/.test(userAgent) && !window.MSStream);
 
-  if (isMobile && !isInSmartFoodApp) {
+  // Объединяем условия для определения WebView или приложения SmartoFood
+  const shouldHideWidget = isInSmartFoodApp || isInWebView;
+
+  if (isMobile && !shouldHideWidget) {
     const mobileMenu = document.createElement("div");
     mobileMenu.id = "mobileMenu";
     mobileMenu.style.position = "fixed";
@@ -371,7 +376,7 @@ document.addEventListener("DOMContentLoaded", function () {
     mobileMenu.appendChild(closeButton);
 
     document.body.appendChild(mobileMenu);
-  } else if (!isInSmartFoodApp) {
+  } else if (!shouldHideWidget) {
     const widget = document.createElement("div");
     widget.style.position = "fixed";
     widget.style.bottom = "0";
@@ -539,3 +544,4 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.appendChild(widget);
   }
 });
+
