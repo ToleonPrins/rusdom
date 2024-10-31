@@ -568,5 +568,34 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+// Проверка заголовка страницы
+if (document.title) {
+    console.log("Заголовок страницы:", document.title);
+} else {
+    console.warn("Не удалось получить заголовок страницы — возможно, нет доступа к DOM.");
+}
+
+// Проверка наличия элемента <body>
+const bodyElement = document.querySelector("body");
+if (bodyElement) {
+    console.log("Элемент <body> найден:", bodyElement);
+} else {
+    console.warn("Не удалось найти элемент <body> — возможно, нет доступа к DOM.");
+}
+
+// Дополнительная проверка, чтобы понять, работает ли создание и добавление элементов на страницу
+try {
+    const testDiv = document.createElement("div");
+    testDiv.textContent = "Тестовый элемент для проверки доступа";
+    testDiv.style.position = "fixed";
+    testDiv.style.bottom = "10px";
+    testDiv.style.left = "10px";
+    testDiv.style.backgroundColor = "red";
+    testDiv.style.color = "white";
+    document.body.appendChild(testDiv);
+    console.log("Тестовый элемент добавлен на страницу.");
+} catch (error) {
+    console.error("Ошибка при попытке добавить элемент на страницу:", error);
+}
 
 
