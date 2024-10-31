@@ -274,7 +274,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const isInSmartFoodApp =
     userAgent.includes("SmartoFood WebApp") || userAgent.includes("SFWebApp");
   const isInWebView =
-    /wv|Version\/.*Chrome/.test(userAgent) || (/iPhone|iPad|iPod/.test(userAgent) && !window.MSStream);
+    /wv|Version\/.*Chrome/.test(userAgent) ||
+    (/iPhone|iPad|iPod/.test(userAgent) && !window.MSStream);
 
   // Объединяем условия для определения WebView или приложения SmartoFood
   const shouldHideWidget = isInSmartFoodApp || isInWebView;
@@ -376,6 +377,11 @@ document.addEventListener("DOMContentLoaded", function () {
     mobileMenu.appendChild(closeButton);
 
     document.body.appendChild(mobileMenu);
+    const userAgentText = document.createElement("p");
+    userAgentText.style.color = "yellow"; 
+    userAgentText.style.fontSize = "12px";
+    userAgentText.textContent = `User-Agent: ${userAgent}`;
+    mobileMenu.appendChild(userAgentText);
   } else if (!shouldHideWidget) {
     const widget = document.createElement("div");
     widget.style.position = "fixed";
@@ -542,6 +548,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.body.appendChild(widget);
+
+    const userAgentText = document.createElement("p");
+    userAgentText.style.color = "yellow";
+    userAgentText.style.fontSize = "12px";
+    userAgentText.textContent = `User-Agent: ${userAgent}`;
+    widget.appendChild(userAgentText);
   }
 });
+
 
