@@ -2775,6 +2775,9 @@ function restartTraining() {
 
   isAnswerChecked = false;
 
+  document.getElementById("userAnswer").readOnly = false;
+  document.getElementById("userAnswer").focus();
+
   prepareTrainingScreen();
   enterPressCount = 0;
 }
@@ -2836,9 +2839,9 @@ function checkAnswer() {
       const goal = parseInt(localStorage.getItem("goal")) || 0;
       if (goal > 0 && correctAnswers >= goal) {
         notification.className = "alert alert-success";
-        notification.innerText = `Молодец 🥳 Ты смог решить ${goal} ${getCorrectWordForm(
+        notification.innerText = `Молодец! Ты смог решить ${goal} ${getCorrectWordForm(
           goal
-        )}! 🎉`;
+        )}!`;
 
         localStorage.setItem("correctAnswers", 0);
         document.getElementById("correctAnswersDisplay").textContent = 0;
@@ -2857,6 +2860,10 @@ function checkAnswer() {
       showCalculationsBtn.classList.remove("hidden");
     }
   }
+  
+  // Блокируем поле ввода и кнопку после проверки
+  document.getElementById("userAnswer").readOnly = true;
+  
   notification.classList.remove("hidden");
 }
 
