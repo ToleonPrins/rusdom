@@ -346,10 +346,13 @@ function clearNotification() {
 function goBack() {
   clearInputAndCalculations();
   clearNotification();
+
+  document.getElementById("userAnswer").readOnly = false;
+  document.getElementById("userAnswer").value = "";
+  document.getElementById("userAnswer").focus();
+  
   document.getElementById("baseSettings").classList.remove("hidden");
-  document
-    .querySelector(".settings-container")
-    .classList.remove("hidden");
+  document.querySelector(".settings-container").classList.remove("hidden");
   document.getElementById("trainingScreen").classList.add("hidden");
   var showCalculationsBtn = document.getElementById("showCalculations");
   if (showCalculationsBtn) {
